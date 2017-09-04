@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shareTools.dao.UserDao">
+    <!-- 目的：为dao接口方法提供sql语句配置
+     DATE 必须大写
+    -->
+    <insert id="insertUser"  parameterType="com.shareTools.entity.UserEntity">
+        <!-- 具体的sql -->
+        INSERT into user(UserName,password,createTime,UpdateTime) VALUES(#{UserName},#{password},#{createTime,jdbcType=DATE, jdbcType=VARCHAR},#{UpdateTime,jdbcType=DATE, jdbcType=VARCHAR})
+
+
+    </insert>
+
+
+
+
+</mapper>
