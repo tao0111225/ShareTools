@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -37,6 +38,17 @@ public class UserServiceImpl implements  UserService {
        }
 
     }
+
+    @Override
+    public int InsertUser(String UserName, String password) {
+        UserEntity user=new UserEntity();
+        user.setUserName(UserName);
+        user.setPassword(password);
+        user.setCreateTime(new Date());
+        user.setUpdateTime(new Date());
+        return   userDao.insertUser(user);
+    }
+
 
 
 
