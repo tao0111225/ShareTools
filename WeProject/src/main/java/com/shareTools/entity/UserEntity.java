@@ -49,4 +49,15 @@ public class UserEntity {
     public void setUpdateTime(Date updateTime) {
         UpdateTime = updateTime;
     }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                ", UserName='" + UserName + '\'' +
+                ", password='" + password + '\'' +
+                ", createTime=" + createTime +
+                ", UpdateTime=" + UpdateTime +
+                '}';
+    }
 }

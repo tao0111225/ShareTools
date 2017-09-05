@@ -10,8 +10,11 @@
         <!-- 具体的sql -->
         INSERT into user(UserName,password,createTime,UpdateTime) VALUES(#{UserName},#{password},#{createTime,jdbcType=DATE, jdbcType=VARCHAR},#{UpdateTime,jdbcType=DATE, jdbcType=VARCHAR})
 
-
     </insert>
+
+    <select id="queryById"  resultType="com.shareTools.entity.UserEntity">
+        	  SELECT *  from user WHERE UserName = #{0} and password = #{1}
+    </select>
 
 
 

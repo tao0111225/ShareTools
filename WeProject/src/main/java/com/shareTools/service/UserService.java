@@ -1,26 +1,22 @@
 package com.shareTools.service;
 
-import com.shareTools.dao.UserDao;
+
 import com.shareTools.entity.UserEntity;
-import com.shareTools.service.impl.UserServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
-
-public class UserService  implements UserServiceImpl{
 
 
-    @Autowired
-    UserDao userDao;
+public interface UserService   {
 
 
-    @Override
-    public UserEntity queryById(long id) {
-        return null;
-    }
+    /**
+     * 通过ID查询用户想去
+     *
+     * @param id
+     * @return
+     */
+    UserEntity queryById(long id);
 
-    @Override
-    public List<UserEntity> queryAll(int offset, int limit) {
-        return null;
-    }
+
+    UserEntity queryById(String name,String password);
+
+
 }
