@@ -19,7 +19,8 @@ public interface UserService   {
     UserEntity queryById(String name,String password);
 
 
-    int InsertUser(String UserName,String password);
 
 
+
+    UserEntity InsertUserResultObj(String UserName,String password);
 }

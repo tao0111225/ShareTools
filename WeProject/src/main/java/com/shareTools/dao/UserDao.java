@@ -7,13 +7,16 @@ public interface UserDao {
     /**
      *  新建用户
      */
-    int insertUser(UserEntity userEntity);
+    Long InsertUserResultObj(UserEntity userEntity);
 
 
     /**
      *  查询单个用户
      */
     UserEntity queryById(String name,String password);
+
+
+
 
 
 }

@@ -22,8 +22,8 @@ public class UserTest extends BaseTest {
         userEntity.setPassword("123456");
         userEntity.setCreateTime(new Date());
         userEntity.setUpdateTime(new Date());
-     int ok=   userDao.insertUser(userEntity);
-        System.out.println(ok);
+           Long UserId=   userDao.InsertUserResultObj(userEntity);
+        System.out.println(" UserId - "+UserId  + " userEntity = "+userEntity.toString());
     }
 
 

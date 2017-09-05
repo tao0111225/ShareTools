@@ -39,14 +39,17 @@ public class UserServiceImpl implements  UserService {
 
     }
 
+
+    // TODO: 2017/9/5  处理 插入异常情况
     @Override
-    public int InsertUser(String UserName, String password) {
+    public UserEntity InsertUserResultObj(String UserName, String password) {
         UserEntity user=new UserEntity();
         user.setUserName(UserName);
         user.setPassword(password);
         user.setCreateTime(new Date());
         user.setUpdateTime(new Date());
-        return   userDao.insertUser(user);
+        userDao.InsertUserResultObj(user);
+        return user  ;
     }
 
 

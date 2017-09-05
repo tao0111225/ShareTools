@@ -6,11 +6,17 @@
     <!-- 目的：为dao接口方法提供sql语句配置
      DATE 必须大写
     -->
-    <insert id="insertUser"  parameterType="com.shareTools.entity.UserEntity">
+    <insert id="InsertUserResultObj"  parameterType="com.shareTools.entity.UserEntity" useGeneratedKeys="true">
+        <selectKey resultType="_long" order="AFTER"  keyProperty="UserId" >
+            SELECT LAST_INSERT_ID() AS UserId
+        </selectKey>
         <!-- 具体的sql -->
         INSERT into user(UserName,password,createTime,UpdateTime) VALUES(#{UserName},#{password},#{createTime,jdbcType=DATE, jdbcType=VARCHAR},#{UpdateTime,jdbcType=DATE, jdbcType=VARCHAR})
 
     </insert>
+
+
+
 
     <select id="queryById"  resultType="com.shareTools.entity.UserEntity">
         	  SELECT *  from user WHERE UserName = #{0} and password = #{1}

@@ -4,18 +4,18 @@ import java.util.Date;
 
 public class UserEntity {
 
-    private Long id;
+    private Long UserId;
     private String UserName;
     private String password;
     private Date  createTime;
     private Date UpdateTime;
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return UserId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        UserId = userId;
     }
 
     public String getUserName() {
@@ -53,7 +53,7 @@ public class UserEntity {
     @Override
     public String toString() {
         return "UserEntity{" +
-                "id=" + id +
+                "id=" + UserId +
                 ", UserName='" + UserName + '\'' +
                 ", password='" + password + '\'' +
                 ", createTime=" + createTime +

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/")
 public class LoginController {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -24,11 +24,13 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+    // TODO: 2017/9/5  记录 登录时间，请求日志.
     // 登录
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "login", method = RequestMethod.GET)
     @ResponseBody
-    private Result<UserEntity> login(@RequestParam("UserName") String UserName, @RequestParam("password") String password) {
-
+    private Result<UserEntity> login() {
+        String  UserName="admin";
+        String  password="admin";
         if (StringUtils.isEmpty(UserName) || StringUtils.isEmpty(password)) {
             return new Result<>(false, "账号密码不能为空");
         }
@@ -43,11 +45,11 @@ public class LoginController {
     }
 
     // 注册
-
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @RequestMapping(value = "register", method = RequestMethod.GET)
     @ResponseBody
-    private Result<UserEntity> register(@RequestParam("UserName") String UserName, @RequestParam("password") String password) {
-
+    private Result<UserEntity> register() {
+        String  UserName="admin1";
+        String  password="admin2";
         /**
          * 1 查询是否存储
          * 2 如果不存在，添加 返回对象
@@ -59,13 +61,13 @@ public class LoginController {
 
         UserEntity userEntity = userService.queryById(UserName, password);
 
+        // 注册 成功 返回对象
         if (userEntity == null) {
-            userService.InsertUser(UserName,password);
+            UserEntity user=  userService.InsertUserResultObj(UserName,password);
+            return new Result<>(true, user);
         } else {
             return new Result<>(false, "账号密码以及被注册");
         }
-
-        return null;
     }
 
 }
