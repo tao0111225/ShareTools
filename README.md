@@ -28,4 +28,17 @@ nosql
 	登录  注册
   
 2： 上传chorme 书签夹   分类  处理  收藏数据库.  
+
+
+
+
+建表：
+	书签表：
+    /**
+         * bookMark ID   -->  书签id
+         * UserId   --> 外键关联
+         * bookMarkSourceFile  --> 源文件
+         * bookMarkTreeContent --> 源文件转化 tree List
+         * bookCreateTime  --> 创建时间
+         */
    
