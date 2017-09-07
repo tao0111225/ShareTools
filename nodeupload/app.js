@@ -2,6 +2,7 @@ var fs = require('fs');
 var express = require('express');
 var multer  = require('multer');
 var cheerio = require('cheerio');
+var superagent = require('superagent');
 
 var app = express();
 
@@ -79,9 +80,11 @@ function parse(html,filename){
     // 将对象转化为json字符串，添加额外参数使json格式更易阅读
     var s = JSON.stringify(SingleArr, null, 4);
 
+	senFileTreeList(filename,s);
+	
     // 将json字符串写入json文件
       fs.writeFileSync('./analysisHtml/'+filename+'.json', s);
-
+	
     function foo($dt,fname){
 
          // h3标签为文件夹名称
@@ -131,3 +134,28 @@ function parse(html,filename){
         return "";
     }
 }
+
+/**
+  发送
+	文件夹路径,
+	文本内容
+  到服务器
+*/
+function senFileTreeList(FilePathstr,FileContentstr){
+	superagent.post('http://localhost:8888/bookmark/ParseBookMarkConversionTrees')
+		.type('form')
+		.send({FilePath : FilePathstr})
+		.send({FileContent : FileContentstr})
+		.end(function(err, res){
+			 // todo 可以 优化  网页响应
+			if(err){
+				console.log('error');
+			}else{
+				console.log('success');  
+			}
+		})
+
+}
+
+
+
