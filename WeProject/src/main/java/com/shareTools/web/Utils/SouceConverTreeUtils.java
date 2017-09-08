@@ -37,6 +37,7 @@ public class SouceConverTreeUtils {
 
     /**
      *  初始化树结构
+     *  可以处理多级 书签栏
      */
     private void InitTestTree() {
         BookMarkTreeEntity testBookMark = new BookMarkTreeEntity();
@@ -65,9 +66,7 @@ public class SouceConverTreeUtils {
 
         printTree(TestTree);
 
-
         String treeListStr = gson.toJson(SavePrintTree);
-
 
         System.out.println(treeListStr);
     }
@@ -95,14 +94,13 @@ public class SouceConverTreeUtils {
 
             return;
         }
-
+        // todo 可以优化，把添加进去的 对象 从集合冲移除.
         // 非空文件夹
         if (rootTree.getNodeSize() > 0) {
             // 如果一般有child话，就是文件夹
             for (int i = 0; i < rootTree.getNodeSize(); i++) {
                 TreeEntity entity = rootTree.getChildList().get(i);
                 if (entity.isFolder()) {
-
                     BookMarkTreeEntity childNode = new BookMarkTreeEntity();
                     childNode.setId(entity.getId());
                     childNode.setFid(entity.getFid());
@@ -112,7 +110,6 @@ public class SouceConverTreeUtils {
                     // 添加文件夹
                     SavePrintTree.add(childNode);
                 }
-
                 printTree(entity);
 
             }
