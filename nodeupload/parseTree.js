@@ -2,7 +2,7 @@ var cheerio = require('cheerio'),
     fs = require('fs');
 
 // 读取书签html文件
-fs.readFile('bookmarks_2017_8_6.html', 'utf-8',function(err,data){
+fs.readFile('bookmarks_2017_9_8.html', 'utf-8',function(err,data){
     if(err){
         console.log("error");
     }else{

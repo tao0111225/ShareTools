@@ -71,6 +71,10 @@ public class TreeEntity {
         childList.add(childNode);
     }
 
+    public long getNodeSize(){
+        return childList.size();
+    }
+
     public List<TreeEntity> getChildList() {
         return childList;
     }
