@@ -64,12 +64,23 @@ public class SouceConverTreeUtils {
 
         SavePrintTree.add(rootEntity);
 
-        printTree(TestTree);
+        printMoreTree(TestTree);
 
         String treeListStr = gson.toJson(SavePrintTree);
-
         System.out.println(treeListStr);
     }
+
+
+
+    /**
+     *  需求:
+     *       一层 文件夹
+     *       如果 有多层  数据统归为上一层.
+     *       如果第一次也是标签，归为其他.
+     */
+
+
+
 
 
     private List SavePrintTree = new ArrayList<BookMarkTreeEntity>();
@@ -77,12 +88,12 @@ public class SouceConverTreeUtils {
 
     /**
      * 输出 带CId  Fid 的 tree List.
+     * 多层解析
      */
-    private void printTree(TreeEntity rootTree) {
+    private void printMoreTree(TreeEntity rootTree) {
 
         // 叶子节点  ||    空文件
         if (!rootTree.isFolder()) {
-
             BookMarkTreeEntity childNode = new BookMarkTreeEntity();
             childNode.setId(rootTree.getId());
             childNode.setFid(rootTree.getFid());
@@ -91,7 +102,6 @@ public class SouceConverTreeUtils {
             childNode.setFolder(rootTree.isFolder());
 
             SavePrintTree.add(childNode);
-
             return;
         }
         // todo 可以优化，把添加进去的 对象 从集合冲移除.
@@ -110,12 +120,29 @@ public class SouceConverTreeUtils {
                     // 添加文件夹
                     SavePrintTree.add(childNode);
                 }
-                printTree(entity);
+                printMoreTree(entity);
 
             }
         }
+    }
+
+
+
+
+    /**
+     * 输出 带CId  Fid 的 tree List.
+     *  一层解析
+     *     0
+     *   解决方法:
+     *      Fid Cid  排序
+     *
+     */
+    private void printTree(TreeEntity rootTree) {
+
 
     }
+
+
 
     @Test
     public void initData() {
@@ -124,8 +151,12 @@ public class SouceConverTreeUtils {
         BookMarkList = gson.fromJson(treeList, new TypeToken<List<BookMarkTreeEntity>>() {
         }.getType());
         InitTestTree();
-
     }
+
+
+
+
+
 
     // 从本地文件 读取 json  转 字符串.
     public static String ReadFile(String path) {
